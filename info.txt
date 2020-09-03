@@ -1,0 +1,5 @@
+Default channel key is "global"
+All players need gab.channel.global permission in order to see chat
+
+TODO: discord sending for non-global not working
+

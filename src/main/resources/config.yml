@@ -1,0 +1,5 @@
+debug: true
+default_prefix: "&3[&f%clan%&3]&r%group%"
+discord: true
+censor_character: "*"
+banned_words: []
