@@ -68,7 +68,7 @@ public class StringFunctions {
             returnUUID = UUID.fromString(uuid);
             return returnUUID;
         } catch (Exception ex) {
-            Gab.getInstance().error().save(
+            Gab.instance.error().save(
                     "01",
                     "StringFunctions",
                     "uuidFromString(String)",
@@ -187,7 +187,7 @@ public class StringFunctions {
         if (messageArray != null) {
             for (int i = 0; i < messageArray.length; ++i) {
 
-                //Gab.getInstance().log().quick("messageArray[" + i + "] = " + messageArray[i]);
+                //Gab.instance.log().quick("messageArray[" + i + "] = " + messageArray[i]);
 
                 TextComponent textComponent;
                 switch (messageArray[i]) {
@@ -201,10 +201,10 @@ public class StringFunctions {
                     default:
                         textComponent = new TextComponent(StringFunctions.colorCode(messageArray[i]));
                         // Global banned word
-                        if (bannedWord(Gab.getInstance().data().getGabConfig().getBannedWords(), messageArray[i])) {
+                        if (bannedWord(Gab.instance.data().getGabConfig().getBannedWords(), messageArray[i])) {
                             textComponent = getTextComponent(
                                     paddedText(
-                                            Gab.getInstance().data().getGabConfig().getCensorCharacter(),
+                                            Gab.instance.data().getGabConfig().getCensorCharacter(),
                                             messageArray[i].length()
                                     ),
                                     HoverEvent.Action.SHOW_TEXT,
@@ -217,7 +217,7 @@ public class StringFunctions {
                         if (bannedWord(channel.getBannedWords(), messageArray[i])) {
                             textComponent = getTextComponent(
                                     paddedText(
-                                            Gab.getInstance().data().getGabConfig().getCensorCharacter(),
+                                            Gab.instance.data().getGabConfig().getCensorCharacter(),
                                             messageArray[i].length()
                                     ),
                                     HoverEvent.Action.SHOW_TEXT,
@@ -229,7 +229,7 @@ public class StringFunctions {
                         break;
                 }
 
-                //Gab.getInstance().log().quick(textComponent.toString());
+                //Gab.instance.log().quick(textComponent.toString());
                 textComponent.addExtra(" ");
                 msg.addExtra(textComponent);
 

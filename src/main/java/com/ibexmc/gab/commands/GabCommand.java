@@ -44,7 +44,7 @@ public class GabCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        Gab plugin = Gab.getInstance();
+        Gab plugin = Gab.instance;
 
         Map<Integer, String> arguments = getArguments(args);
 
@@ -113,7 +113,7 @@ public class GabCommand implements CommandExecutor, TabCompleter {
                                         null
                                 );
                             } catch (Exception ex) {
-                                Gab.getInstance().error().save(
+                                Gab.instance.error().save(
                                         "GabCommand.reload.001",
                                         "GabCommand",
                                         "onCommand().reload",

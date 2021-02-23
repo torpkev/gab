@@ -1,0 +1,30 @@
+name: Gab
+main: com.ibexmc.gab.Gab
+version: 1.0.0
+api-version: 1.13
+softdepend: [DiscordSRV]
+depend: [Vault]
+commands:
+  gab:
+    description: Runs the gab commands
+    usage: /gab
+  chat:
+    description: Allows a player to join a chat
+    usage: /chat
+    aliases: [ch]
+  chatother:
+    description: Used to put other players into a chat
+    usage: /chatother
+    aliases: [cho]
+  chatleave:
+    description: Allows a player to leave the chat
+    usage: /chatleave
+    aliases: [chx]
+  chatlist:
+    description: Lists the chats available
+    usage: /chatlist
+    aliases: [chl, chlist]
+  chatadmin:
+    description: Gives access to admin features for the chat
+    usage: /chatadmin
+    aliases: [cha]

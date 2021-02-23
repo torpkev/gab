@@ -24,7 +24,7 @@ public class PlayerFunctions {
             savePlayerSettingsToFile(uuid);
         }
 
-        Gab plugin = Gab.getInstance();
+        Gab plugin = Gab.instance;
 
         ConfigParser configParser = new ConfigParser(plugin, dataFile);
 
@@ -114,7 +114,7 @@ public class PlayerFunctions {
         // Currently In
         List<String> currentlyIn = new ArrayList<>();
         currentlyIn.add("global");
-        for (String channel : Gab.getInstance().data().currentlyInChannels(uuid)) {
+        for (String channel : Gab.instance.data().currentlyInChannels(uuid)) {
             if (!channel.equalsIgnoreCase("global")) {
                 currentlyIn.add(channel);
             }
@@ -122,23 +122,23 @@ public class PlayerFunctions {
         fileConfig.set("currently_in", currentlyIn);
 
         // Currently Chatting In
-        Channel channel = Gab.getInstance().data().currentChatChannel(uuid);
+        Channel channel = Gab.instance.data().currentChatChannel(uuid);
         if (channel == null) {
            channel = new Channel();
         }
         fileConfig.set("currently_chatting_in", channel.getKey());
 
         // Notifications Muted List
-        boolean notificationsMuted = Gab.getInstance().data().playerNotificationsMuted(uuid);
+        boolean notificationsMuted = Gab.instance.data().playerNotificationsMuted(uuid);
         fileConfig.set("notifications_muted", notificationsMuted);
 
         // Globally Muted
-        boolean globallyMuted = Gab.getInstance().data().isGlobalMuted(uuid);
+        boolean globallyMuted = Gab.instance.data().isGlobalMuted(uuid);
         fileConfig.set("global_mute", globallyMuted);
 
         // Channel Muted
         List<String> channelMuted = new ArrayList<>();
-        for (String mutedChannel : Gab.getInstance().data().channelMuteChannels(uuid)) {
+        for (String mutedChannel : Gab.instance.data().channelMuteChannels(uuid)) {
             channelMuted.add(mutedChannel);
         }
         fileConfig.set("channel_mute", channelMuted);
@@ -149,7 +149,7 @@ public class PlayerFunctions {
                 //Logging.log("Blank file found", customYml.getName());
             }
         } catch (IOException e) {
-            Gab.getInstance().error().save(
+            Gab.instance.error().save(
                     "PlayerFunctions.savePlayerSettingsToFile.001",
                     "PlayerFunctions",
                     "savePlayerSettingsToFile()",

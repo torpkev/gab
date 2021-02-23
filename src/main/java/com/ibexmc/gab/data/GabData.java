@@ -354,7 +354,7 @@ public class GabData {
         return vaultChatHooked;
     }
     public void hookVault() {
-        Plugin plug = Gab.getInstance().getServer().getPluginManager().getPlugin("Vault");
+        Plugin plug = Gab.instance.getServer().getPluginManager().getPlugin("Vault");
         if (plug != null) {
             RegisteredServiceProvider<net.milkbowl.vault.permission.Permission> rspPerm =
                     plugin.getServer()

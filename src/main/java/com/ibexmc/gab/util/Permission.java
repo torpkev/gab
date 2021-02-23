@@ -43,7 +43,7 @@ public class Permission {
         if (player.hasPermission(permissionTypeToString(permission))) {
             hasPermission = true;
         }
-        Gab.getInstance().debug().log(
+        Gab.instance.debug().log(
                 "Permissions",
                 "hasPermission",
                 "Has Permission: " + hasPermission,
@@ -64,7 +64,7 @@ public class Permission {
         if (player.hasPermission(permissionTypeToString(PermissionType.CHANNEL) + "." + channel)) {
             hasPermission = true;
         }
-        Gab.getInstance().debug().log(
+        Gab.instance.debug().log(
                 "Permissions",
                 "hasPermission",
                 "Has Permission: " + hasPermission,
@@ -90,7 +90,7 @@ public class Permission {
         if (player.hasPermission(permissionTypeToString(PermissionType.CHANNEL) + "." + channel + ".admin")) {
             hasPermission = true;
         }
-        Gab.getInstance().debug().log(
+        Gab.instance.debug().log(
                 "Permissions",
                 "hasPermission",
                 "Has Permission: " + hasPermission,
@@ -114,16 +114,16 @@ public class Permission {
     }
     public static List<Channel> allowedChannels(Player player) {
         List<Channel> returnChannels = new ArrayList<>();
-        Map<String, Channel> channels = Gab.getInstance().data().getChannels();
+        Map<String, Channel> channels = Gab.instance.data().getChannels();
         if (channels != null) {
-            Gab.getInstance().log().quick("Channels is not null");
+            Gab.instance.log().quick("Channels is not null");
             for (Map.Entry<String, Channel> channelEntry : channels.entrySet()) {
-                Gab.getInstance().log().quick("Current channel: " + channelEntry.getValue().getKey());
+                Gab.instance.log().quick("Current channel: " + channelEntry.getValue().getKey());
                 if (Permission.isChatter(player, channelEntry.getValue().getKey())) {
-                    Gab.getInstance().log().quick("Player is a chatter here");
+                    Gab.instance.log().quick("Player is a chatter here");
                     returnChannels.add(channelEntry.getValue());
                 } else {
-                    Gab.getInstance().log().quick("Player is not a chatter here");
+                    Gab.instance.log().quick("Player is not a chatter here");
                 }
             }
         }

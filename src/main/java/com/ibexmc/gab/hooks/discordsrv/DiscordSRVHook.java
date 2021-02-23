@@ -8,21 +8,21 @@ import org.bukkit.plugin.Plugin;
 
 public class DiscordSRVHook {
     public void hook() {
-        Plugin plug = Gab.getInstance().getServer().getPluginManager().getPlugin("DiscordSRV");
+        Plugin plug = Gab.instance.getServer().getPluginManager().getPlugin("DiscordSRV");
         if (plug != null) {
-            Gab.getInstance().data().setDiscordHooked(true);
+            Gab.instance.data().setDiscordHooked(true);
         } else {
-            Gab.getInstance().data().setDiscordHooked(false);
+            Gab.instance.data().setDiscordHooked(false);
         }
     }
     public void message(String message) {
         try {
-            if (!Gab.getInstance().data().isDiscordHooked()) {
+            if (!Gab.instance.data().isDiscordHooked()) {
                 // DiscordSRV not found
                 return;
             }
             if (!DiscordSRV.isReady) {
-                Gab.getInstance().debug().log(
+                Gab.instance.debug().log(
                         "DiscordSRVHook",
                         "messasge(String)",
                         "DiscordSRV returning not ready",
@@ -39,13 +39,13 @@ public class DiscordSRVHook {
                         textChannel.sendMessage(message).queue();
                         String a = "B";
                     } else {
-                        Gab.getInstance().log().quick("Can't talk");
+                        Gab.instance.log().quick("Can't talk");
                     }
                 } catch (Exception ex) {
-                    Gab.getInstance().log().quick(ex.getMessage());
+                    Gab.instance.log().quick(ex.getMessage());
                 }
             } else {
-                Gab.getInstance().error().save(
+                Gab.instance.error().save(
                         "001",
                         "DiscordSRVHook",
                         "message(String)",
@@ -56,7 +56,7 @@ public class DiscordSRVHook {
                 );
             }
         } catch (Exception ex) {
-            Gab.getInstance().error().save(
+            Gab.instance.error().save(
                     "002",
                     "DiscordSRVHook",
                     "message(String)",

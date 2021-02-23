@@ -25,7 +25,7 @@ public class GabConfig {
 
     public void getConfig(File file) {
 
-        this.plugin = Gab.getInstance();
+        this.plugin = Gab.instance;
 
         ConfigParser configParser = new ConfigParser(plugin, file);
 

@@ -21,7 +21,7 @@ public class ChatListCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        Gab plugin = Gab.getInstance();
+        Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
         if (!plugin.data().isEnabled()) {

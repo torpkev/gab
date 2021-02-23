@@ -32,12 +32,12 @@ public class Channel {
         // Default channel
         this.key = "global";
         this.name = "Global";
-        this.prefix = Gab.getInstance().data().getGabConfig().getDefaultPrefix();
+        this.prefix = Gab.instance.data().getGabConfig().getDefaultPrefix();
         this.sendToDiscord = true;
         this.defaultColor = "&f";
     }
     public Channel(File file) {
-        ConfigParser configParser = new ConfigParser(Gab.getInstance(), file);
+        ConfigParser configParser = new ConfigParser(Gab.instance, file);
 
 
         // key
@@ -53,7 +53,7 @@ public class Channel {
 
             switch (this.key) {
                 case "global":
-                    Gab.getInstance().error().save(
+                    Gab.instance.error().save(
                             "Channel.name.001",
                             "Channel",
                             "Constructor(File)",
@@ -65,7 +65,7 @@ public class Channel {
                     invalid = true;
                     break;
                 case "local":
-                    Gab.getInstance().error().save(
+                    Gab.instance.error().save(
                             "Channel.name.001",
                             "Channel",
                             "Constructor(File)",
@@ -139,7 +139,7 @@ public class Channel {
                         this.sendToDiscord = false;
                     }
                 } else {
-                    this.sendToDiscord = Gab.getInstance().data().getGabConfig().getDiscord();
+                    this.sendToDiscord = Gab.instance.data().getGabConfig().getDiscord();
                 }
 
             } else {
@@ -183,7 +183,7 @@ public class Channel {
         }
     }
     public boolean sendToDiscord() {
-        if (Gab.getInstance().data().isDiscordHooked()) {
+        if (Gab.instance.data().isDiscordHooked()) {
             return sendToDiscord;
         } else {
             return false;
@@ -199,7 +199,7 @@ public class Channel {
 
     public String prefix(Player player) {
 
-        Gab.getInstance().log().quick("Prefix: " + this.prefix);
+        Gab.instance.log().quick("Prefix: " + this.prefix);
         // Get the channel prefix and replace %world% with the player world name
         String messagePrefix = this.prefix.replace(
                 "%world%",
@@ -209,11 +209,11 @@ public class Channel {
         // If we have %group% in our prefix, get the group prefix
         // from Vault if is hooked.
         if (this.prefix.toLowerCase().contains("%group%")) {
-            if (Gab.getInstance().data().isVaultChatHooked()) {
+            if (Gab.instance.data().isVaultChatHooked()) {
                 VaultHook vaultHook = new VaultHook(
-                        Gab.getInstance(),
-                        Gab.getInstance().data().vaultPermission,
-                        Gab.getInstance().data().vaultChat
+                        Gab.instance,
+                        Gab.instance.data().vaultPermission,
+                        Gab.instance.data().vaultChat
                 );
                 messagePrefix = messagePrefix.replace("%group%", vaultHook.getPrefix(player));
             }
@@ -228,11 +228,11 @@ public class Channel {
     }
     public String discordFormat(Player player, String message) {
         String returnMessage = "";
-        if (Gab.getInstance().data().isVaultChatHooked()) {
+        if (Gab.instance.data().isVaultChatHooked()) {
             VaultHook vaultHook = new VaultHook(
-                    Gab.getInstance(),
-                    Gab.getInstance().data().vaultPermission,
-                    Gab.getInstance().data().vaultChat
+                    Gab.instance,
+                    Gab.instance.data().vaultPermission,
+                    Gab.instance.data().vaultChat
             );
             String groupPrefix = vaultHook.getPrefix(player);
             groupPrefix = "**" + groupPrefix.replace("[", "").replace("]", "") + "**";
@@ -250,9 +250,9 @@ public class Channel {
     public void update() {
         if (!invalid) {
             this.save();
-            Gab.getInstance().data().putChannel(this);
+            Gab.instance.data().putChannel(this);
         } else {
-            Gab.getInstance().log().console("Channel Update", "Unable to update channel, config is invalid");
+            Gab.instance.log().console("Channel Update", "Unable to update channel, config is invalid");
         }
     }
 }

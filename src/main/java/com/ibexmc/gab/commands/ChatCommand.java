@@ -37,7 +37,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        Gab plugin = Gab.getInstance();
+        Gab plugin = Gab.instance;
 
         plugin.log().quick(label);
 

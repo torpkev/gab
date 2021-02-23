@@ -12,14 +12,14 @@ public class FileUtils {
     public static File getFileByUUID(String folder, UUID uuid) {
         if (StringFunctions.isNullOrEmpty(folder)) {
             return new File(
-                    Gab.getInstance().getDataFolder() +
+                    Gab.instance.getDataFolder() +
                             File.separator +
                             uuid.toString() +
                             ".yml"
             );
         } else {
             return new File(
-                    Gab.getInstance().getDataFolder() +
+                    Gab.instance.getDataFolder() +
                             File.separator +
                             folder +
                             File.separator +
@@ -30,13 +30,13 @@ public class FileUtils {
     }
     public static File getConfigYml() {
         File configFile = new File(
-                Gab.getInstance().getDataFolder() +
+                Gab.instance.getDataFolder() +
                         File.separator + "config.yml"
         );
         if (configFile.exists()) {
             return configFile;
         } else {
-            Gab.getInstance().error().save(
+            Gab.instance.error().save(
                     "FileUtils.getConfigYml.001",
                     "FileUtils",
                     "getConfigYml()",
@@ -50,7 +50,7 @@ public class FileUtils {
     }
     public static File getLanguageYml() {
         File configFile = new File(
-                Gab.getInstance().getDataFolder() +
+                Gab.instance.getDataFolder() +
                         File.separator + "lang.yml"
         );
         return configFile;

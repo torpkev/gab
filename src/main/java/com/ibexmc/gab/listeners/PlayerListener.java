@@ -22,7 +22,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.List;
 
 public class PlayerListener implements Listener {
-    private static Gab plugin = Gab.getInstance();
+    private static Gab plugin = Gab.instance;
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {

@@ -75,7 +75,7 @@ public class ChatReplacements {
                             HashMap<String, String> damagePlaceHolder = new HashMap<>();
                             damagePlaceHolder.put("<%durability%>", "" + durability);
                             damagePlaceHolder.put("<%maxdurability%>", "" + hand.getType().getMaxDurability());
-                            handHover = handHover + "\n" + Gab.getInstance().locale().getLocaleTextByCode("na","&f[&7<%durability%>&f/&7<%maxdurability%>&f]", damagePlaceHolder);
+                            handHover = handHover + "\n" + Gab.instance.locale().getLocaleTextByCode("na","&f[&7<%durability%>&f/&7<%maxdurability%>&f]", damagePlaceHolder);
                         }
                     }
                 }

@@ -15,20 +15,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Gab  extends JavaPlugin {
 
-    private static Gab instance;
-    public static Gab getInstance() {
-        return instance;
-    }
+    public static Gab instance;
 
     private final String internalName = "Gab";
     public String getInternalName() {
         return internalName;
     }
 
-    private GabData gabData;
-    public GabData data() {
-        return gabData;
-    }
+    public GabData data;
 
 
     Log logClass = new Log(this);
@@ -61,12 +55,12 @@ public class Gab  extends JavaPlugin {
         errorClass = new Error(this);
 
         // Create the live data
-        gabData = new GabData(this);
+        data = new GabData(this);
 
         // From this point, debug messages will depend on the config
         // value - if debug is required prior to this point, set
         // the debug to true manually above
-        debugClass = new Debug(this, gabData.isDebug());
+        debugClass = new Debug(this, data.isDebug());
 
         locale = new Locale(this);
         message = new Message(this);
@@ -80,10 +74,10 @@ public class Gab  extends JavaPlugin {
         loadCommands();
         registerListeners();
 
-        data().hookVault();
-        data().hookDiscordSRV();
+        data.hookVault();
+        data.hookDiscordSRV();
 
-        data().load();
+        data.load();
 
     }
 
