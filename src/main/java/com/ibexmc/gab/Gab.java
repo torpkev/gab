@@ -60,7 +60,7 @@ public class Gab  extends JavaPlugin {
         // From this point, debug messages will depend on the config
         // value - if debug is required prior to this point, set
         // the debug to true manually above
-        debugClass = new Debug(this, data.isDebug());
+        debugClass = new Debug(this, data.debug);
 
         locale = new Locale(this);
         message = new Message(this);

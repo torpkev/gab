@@ -42,7 +42,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
         plugin.log().quick(label);
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",
@@ -88,7 +88,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
             }
 
             // Get the channnel
-            channel =  plugin.data().getChannel(arguments.get(0));
+            channel =  plugin.data.getChannel(arguments.get(0));
         } else {
             // Get the default channel (global)
             channel = new Channel();
@@ -98,17 +98,17 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
         if (channel != null) {
             if (Permission.isChatter(player, channel.getName().toLowerCase())) {
                 // Change the players current channel (sending chat)
-                plugin.data().setCurrentChannel(player.getUniqueId(), channel.getKey().toLowerCase());
+                plugin.data.setCurrentChannel(player.getUniqueId(), channel.getKey().toLowerCase());
 
                 // Add the player to the channel (read others chatting)
-                plugin.data().putPlayerInChannel(player.getUniqueId(), channel.getKey().toLowerCase());
+                plugin.data.putPlayerInChannel(player.getUniqueId(), channel.getKey().toLowerCase());
 
                 // Message the player about the change in channel
                 HashMap<String, String> placeHolder = new HashMap<>();
-                placeHolder.put("<%channel%>", channel.getName());
+                placeHolder.put("%channel%", channel.getName());
                 plugin.message().sender(
                         "current_channel",
-                        "&3You are now talking in <%channel%>",
+                        "&3You are now talking in %channel%",
                         sender,
                         true,
                         placeHolder

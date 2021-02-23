@@ -114,7 +114,7 @@ public class Permission {
     }
     public static List<Channel> allowedChannels(Player player) {
         List<Channel> returnChannels = new ArrayList<>();
-        Map<String, Channel> channels = Gab.instance.data().getChannels();
+        Map<String, Channel> channels = Gab.instance.data.getChannels();
         if (channels != null) {
             Gab.instance.log().quick("Channels is not null");
             for (Map.Entry<String, Channel> channelEntry : channels.entrySet()) {

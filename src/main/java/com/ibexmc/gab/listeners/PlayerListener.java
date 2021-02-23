@@ -38,7 +38,7 @@ public class PlayerListener implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         // If the plugin is disabled, exit out
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             return;
         }
 
@@ -47,7 +47,7 @@ public class PlayerListener implements Listener {
         // Check to make sure there is a player (there should be)
         if (event.getPlayer() != null) {
             // Get the players current channel
-            Channel channel = plugin.data().currentChatChannel(event.getPlayer().getUniqueId());
+            Channel channel = plugin.data.currentChatChannel(event.getPlayer().getUniqueId());
 
             // If there is no channel, put the player in global
             if (channel == null) {
@@ -58,7 +58,7 @@ public class PlayerListener implements Listener {
             event.setCancelled(true);
 
             // Check if globally muted
-            if (plugin.data().isGlobalMuted(event.getPlayer().getUniqueId())) {
+            if (plugin.data.isGlobalMuted(event.getPlayer().getUniqueId())) {
                 // global muted
                 plugin.debug().log(
                         "PlayerListener",
@@ -78,7 +78,7 @@ public class PlayerListener implements Listener {
             }
 
             // Check if muted in this channel
-            if (plugin.data().isChannelMuted(event.getPlayer().getUniqueId(), channel.getName())) {
+            if (plugin.data.isChannelMuted(event.getPlayer().getUniqueId(), channel.getName())) {
                 // channel muted
                 plugin.debug().log(
                         "PlayerListener",
@@ -127,7 +127,7 @@ public class PlayerListener implements Listener {
                     // Global chat will always be sent to all players
                     if (
                             channel.getKey().equalsIgnoreCase("global") ||
-                            plugin.data().playerInChannel(player.getUniqueId(), channel.getKey())
+                            plugin.data.playerInChannel(player.getUniqueId(), channel.getKey())
                     ) {
 
                         // Send in-game message
@@ -143,7 +143,7 @@ public class PlayerListener implements Listener {
 
                         // If the message contains the players name, play a sound if notifications aren't muted
                         if (event.getMessage().contains(ChatColor.stripColor(player.getDisplayName()))) {
-                            if (!plugin.data().playerNotificationsMuted(player.getUniqueId())) {
+                            if (!plugin.data.playerNotificationsMuted(player.getUniqueId())) {
                                 Sounds.playerSoundPlayer(player, Sound.ENTITY_CHICKEN_EGG, 1, 1);
                                 plugin.debug().log(
                                         "PlayerListener",

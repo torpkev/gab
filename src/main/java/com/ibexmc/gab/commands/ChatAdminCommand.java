@@ -79,7 +79,7 @@ public class ChatAdminCommand implements CommandExecutor, TabCompleter {
         Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",

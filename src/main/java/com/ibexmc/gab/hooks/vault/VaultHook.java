@@ -15,7 +15,7 @@ public class VaultHook {
         this.chat = chat;
     }
     public String getPrefix(Player player) {
-        if (plugin.data().isVaultChatHooked()) {
+        if (plugin.data.isVaultChatHooked()) {
             return this.chat.getPlayerPrefix(player);
         } else {
             return "";

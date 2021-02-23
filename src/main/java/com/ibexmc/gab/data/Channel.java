@@ -32,7 +32,7 @@ public class Channel {
         // Default channel
         this.key = "global";
         this.name = "Global";
-        this.prefix = Gab.instance.data().getGabConfig().getDefaultPrefix();
+        this.prefix = Gab.instance.data.getGabConfig().getDefaultPrefix();
         this.sendToDiscord = true;
         this.defaultColor = "&f";
     }
@@ -139,7 +139,7 @@ public class Channel {
                         this.sendToDiscord = false;
                     }
                 } else {
-                    this.sendToDiscord = Gab.instance.data().getGabConfig().getDiscord();
+                    this.sendToDiscord = Gab.instance.data.getGabConfig().getDiscord();
                 }
 
             } else {
@@ -183,7 +183,7 @@ public class Channel {
         }
     }
     public boolean sendToDiscord() {
-        if (Gab.instance.data().isDiscordHooked()) {
+        if (Gab.instance.data.isDiscordHooked()) {
             return sendToDiscord;
         } else {
             return false;
@@ -209,11 +209,11 @@ public class Channel {
         // If we have %group% in our prefix, get the group prefix
         // from Vault if is hooked.
         if (this.prefix.toLowerCase().contains("%group%")) {
-            if (Gab.instance.data().isVaultChatHooked()) {
+            if (Gab.instance.data.isVaultChatHooked()) {
                 VaultHook vaultHook = new VaultHook(
                         Gab.instance,
-                        Gab.instance.data().vaultPermission,
-                        Gab.instance.data().vaultChat
+                        Gab.instance.data.vaultPermission,
+                        Gab.instance.data.vaultChat
                 );
                 messagePrefix = messagePrefix.replace("%group%", vaultHook.getPrefix(player));
             }
@@ -228,11 +228,11 @@ public class Channel {
     }
     public String discordFormat(Player player, String message) {
         String returnMessage = "";
-        if (Gab.instance.data().isVaultChatHooked()) {
+        if (Gab.instance.data.isVaultChatHooked()) {
             VaultHook vaultHook = new VaultHook(
                     Gab.instance,
-                    Gab.instance.data().vaultPermission,
-                    Gab.instance.data().vaultChat
+                    Gab.instance.data.vaultPermission,
+                    Gab.instance.data.vaultChat
             );
             String groupPrefix = vaultHook.getPrefix(player);
             groupPrefix = "**" + groupPrefix.replace("[", "").replace("]", "") + "**";
@@ -250,7 +250,7 @@ public class Channel {
     public void update() {
         if (!invalid) {
             this.save();
-            Gab.instance.data().putChannel(this);
+            Gab.instance.data.putChannel(this);
         } else {
             Gab.instance.log().console("Channel Update", "Unable to update channel, config is invalid");
         }

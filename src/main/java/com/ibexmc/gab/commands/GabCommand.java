@@ -77,8 +77,8 @@ public class GabCommand implements CommandExecutor, TabCompleter {
             switch (arguments.get(0)) {
                 case "toggle":
                     if (hasAdmin) {
-                        plugin.data().toggleEnabled();
-                        if (plugin.data().isEnabled()) {
+                        plugin.data.toggleEnabled();
+                        if (plugin.data.enabled) {
                             plugin.message().sender(
                                     "gab_enabled",
                                     "&2Gab is enabled",
@@ -103,7 +103,7 @@ public class GabCommand implements CommandExecutor, TabCompleter {
                         if (configFile != null) {
                             try {
                                 // Set the reloading flag to true to stop people using Domain
-                                plugin.data().load();
+                                plugin.data.load();
                                 // Alert the sender
                                 plugin.message().sender(
                                         "reload_complete",

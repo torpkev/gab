@@ -201,10 +201,10 @@ public class StringFunctions {
                     default:
                         textComponent = new TextComponent(StringFunctions.colorCode(messageArray[i]));
                         // Global banned word
-                        if (bannedWord(Gab.instance.data().getGabConfig().getBannedWords(), messageArray[i])) {
+                        if (bannedWord(Gab.instance.data.getGabConfig().getBannedWords(), messageArray[i])) {
                             textComponent = getTextComponent(
                                     paddedText(
-                                            Gab.instance.data().getGabConfig().getCensorCharacter(),
+                                            Gab.instance.data.getGabConfig().getCensorCharacter(),
                                             messageArray[i].length()
                                     ),
                                     HoverEvent.Action.SHOW_TEXT,
@@ -217,7 +217,7 @@ public class StringFunctions {
                         if (bannedWord(channel.getBannedWords(), messageArray[i])) {
                             textComponent = getTextComponent(
                                     paddedText(
-                                            Gab.instance.data().getGabConfig().getCensorCharacter(),
+                                            Gab.instance.data.getGabConfig().getCensorCharacter(),
                                             messageArray[i].length()
                                     ),
                                     HoverEvent.Action.SHOW_TEXT,

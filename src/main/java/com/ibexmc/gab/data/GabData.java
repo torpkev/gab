@@ -28,13 +28,7 @@ public class GabData {
     }
 
     // Debug
-    boolean debug = false;
-    public boolean isDebug() {
-        return debug;
-    }
-    public void setDebug(boolean debug) {
-        this.debug = debug;
-    }
+    public boolean debug = false;
 
     // Reloading
     private boolean reloading = false;
@@ -45,16 +39,15 @@ public class GabData {
         this.reloading = reloading;
     }
 
-    private boolean enabled = true;
-    public boolean isEnabled() { return enabled; }
+    public boolean enabled = true;
     public void toggleEnabled() {
         if (enabled) {
             enabled = false;
         } else {
             enabled = true;
         }
-
     }
+
     // Gab Config
     private GabConfig gabConfig;
 

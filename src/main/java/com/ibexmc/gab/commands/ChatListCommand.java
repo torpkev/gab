@@ -24,7 +24,7 @@ public class ChatListCommand implements CommandExecutor {
         Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",
@@ -69,7 +69,7 @@ public class ChatListCommand implements CommandExecutor {
                     "&bClick to join",
                     null
             );
-            Map<String, Channel> channels = plugin.data().getChannels();
+            Map<String, Channel> channels = plugin.data.getChannels();
             if (!channels.containsKey("global")) {
                 channels.put("global", new Channel());
             }
@@ -91,10 +91,10 @@ public class ChatListCommand implements CommandExecutor {
             chat.player(player, result);
         } else {
             HashMap<String, String> chlistPlaceHolder = new HashMap<>();
-            chlistPlaceHolder.put("<%cmd%>", label);
+            chlistPlaceHolder.put("%cmd%", label);
             plugin.message().sender(
                     "chlist_usage",
-                    "&lUsage:&r /<%cmd%>",
+                    "&lUsage:&r /%cmd%",
                     sender,
                     true,
                     chlistPlaceHolder

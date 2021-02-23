@@ -10,14 +10,14 @@ public class DiscordSRVHook {
     public void hook() {
         Plugin plug = Gab.instance.getServer().getPluginManager().getPlugin("DiscordSRV");
         if (plug != null) {
-            Gab.instance.data().setDiscordHooked(true);
+            Gab.instance.data.setDiscordHooked(true);
         } else {
-            Gab.instance.data().setDiscordHooked(false);
+            Gab.instance.data.setDiscordHooked(false);
         }
     }
     public void message(String message) {
         try {
-            if (!Gab.instance.data().isDiscordHooked()) {
+            if (!Gab.instance.data.isDiscordHooked()) {
                 // DiscordSRV not found
                 return;
             }

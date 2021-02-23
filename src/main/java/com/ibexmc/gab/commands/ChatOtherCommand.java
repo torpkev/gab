@@ -48,7 +48,7 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
         Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",
@@ -64,10 +64,10 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
         if (arguments.containsKey(0)) {
             if (arguments.get(0).equalsIgnoreCase("?")) {
                 HashMap<String, String> choPlaceHolder = new HashMap<>();
-                choPlaceHolder.put("<%cmd%>", label);
+                choPlaceHolder.put("%cmd%", label);
                 plugin.message().sender(
                         "cho_usage",
-                        "&lUsage:&r /<%cmd%> &b<player> <channel>",
+                        "&lUsage:&r /%cmd% &b<player> <channel>",
                         sender,
                         true,
                         choPlaceHolder
@@ -80,9 +80,9 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
                 if (arguments.get(0).equalsIgnoreCase(ChatColor.stripColor(player.getDisplayName()))) {
                     validPlayer = true;
                     if (arguments.containsKey(1)) {
-                        Channel channel = plugin.data().getChannel(arguments.get(1));
+                        Channel channel = plugin.data.getChannel(arguments.get(1));
                         if (channel != null) {
-                            if (plugin.data().playerInChannel(player.getUniqueId(), channel.getKey())) {
+                            if (plugin.data.playerInChannel(player.getUniqueId(), channel.getKey())) {
                                 plugin.message().sender(
                                         "already_chatter",
                                         "&cPlayer is already in this channel",
@@ -94,14 +94,14 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
                             }
                             if (Permission.isChatter(player, channel.getName().toLowerCase())) {
                                 // Add the player to the channel (read others chatting)
-                                plugin.data().putPlayerInChannel(player.getUniqueId(), channel.getKey().toLowerCase());
+                                plugin.data.putPlayerInChannel(player.getUniqueId(), channel.getKey().toLowerCase());
 
                                 // Message the player about the change in channel
                                 HashMap<String, String> placeHolder = new HashMap<>();
-                                placeHolder.put("<%channel%>", channel.getName());
+                                placeHolder.put("%channel%", channel.getName());
                                 plugin.message().player(
                                         "added_channel",
-                                        "&3You had been added to <%channel%>",
+                                        "&3You had been added to %channel%",
                                         player,
                                         true,
                                         placeHolder
@@ -136,10 +136,10 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
                         }
                     } else {
                         HashMap<String, String> choPlaceHolder = new HashMap<>();
-                        choPlaceHolder.put("<%cmd%>", label);
+                        choPlaceHolder.put("%cmd%", label);
                         plugin.message().sender(
                                 "cho_usage",
-                                "&lUsage:&r /<%cmd%> &b<player> <channel>",
+                                "&lUsage:&r /%cmd% &b<player> <channel>",
                                 sender,
                                 true,
                                 choPlaceHolder
@@ -163,10 +163,10 @@ public class ChatOtherCommand implements CommandExecutor, TabCompleter {
 
         } else {
             HashMap<String, String> choPlaceHolder = new HashMap<>();
-            choPlaceHolder.put("<%cmd%>", label);
+            choPlaceHolder.put("%cmd%", label);
             plugin.message().sender(
                     "cho_usage",
-                    "&lUsage:&r /<%cmd%> &b<player> <channel>",
+                    "&lUsage:&r /%cmd% &b<player> <channel>",
                     sender,
                     true,
                     choPlaceHolder

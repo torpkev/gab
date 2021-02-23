@@ -40,7 +40,7 @@ public class ChatLeaveCommand implements CommandExecutor, TabCompleter {
         Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",
@@ -74,10 +74,10 @@ public class ChatLeaveCommand implements CommandExecutor, TabCompleter {
             if (arguments.get(0).equalsIgnoreCase("?")) {
                 // usage
                 HashMap<String, String> chxPlaceHolder = new HashMap<>();
-                chxPlaceHolder.put("<%cmd%>", label);
+                chxPlaceHolder.put("%cmd%", label);
                 plugin.message().sender(
                         "chx_usage",
-                        "&lUsage:&r /<%cmd%> &b<channel>",
+                        "&lUsage:&r /%cmd% &b<channel>",
                         sender,
                         true,
                         chxPlaceHolder
@@ -94,35 +94,35 @@ public class ChatLeaveCommand implements CommandExecutor, TabCompleter {
                 );
                 return true;
             }
-            if (plugin.data().validChannel(arguments.get(0))) {
-                channel = plugin.data().getChannel(arguments.get(0));
+            if (plugin.data.validChannel(arguments.get(0))) {
+                channel = plugin.data.getChannel(arguments.get(0));
                 if (!channel.getKey().equalsIgnoreCase("global")) {
-                    if (plugin.data().playerInChannel(player.getUniqueId(), channel.getKey())) {
+                    if (plugin.data.playerInChannel(player.getUniqueId(), channel.getKey())) {
                         // Get the current channel the player is chatting in
-                        Channel curChatChannel = plugin.data().currentChatChannel(player.getUniqueId());
+                        Channel curChatChannel = plugin.data.currentChatChannel(player.getUniqueId());
                         // If the player is currently chatting in the channel they are leaving, then
                         // move them into global
                         if (curChatChannel.getKey().equalsIgnoreCase(channel.getKey())) {
                             Channel global = new Channel();
-                            plugin.data().setCurrentChannel(player.getUniqueId(), global.getKey());
+                            plugin.data.setCurrentChannel(player.getUniqueId(), global.getKey());
                             // Message the player about the change in channel
                             HashMap<String, String> placeHolder = new HashMap<>();
-                            placeHolder.put("<%channel%>", global.getName());
+                            placeHolder.put("%channel%", global.getName());
                             plugin.message().sender(
                                     "current_channel",
-                                    "&3You are now talking in <%channel%>",
+                                    "&3You are now talking in %channel%",
                                     sender,
                                     true,
                                     placeHolder
                             );
                         }
                         // Remove the player from the channel
-                        plugin.data().removePlayerFromChannel(player.getUniqueId(), channel.getKey());
+                        plugin.data.removePlayerFromChannel(player.getUniqueId(), channel.getKey());
                         HashMap<String, String> placeHolder = new HashMap<>();
-                        placeHolder.put("<%channel%>", channel.getName());
+                        placeHolder.put("%channel%", channel.getName());
                         plugin.message().sender(
                                 "left_channel",
-                                "&cYou have left <%channel%>",
+                                "&cYou have left %channel%",
                                 sender,
                                 true,
                                 placeHolder
@@ -163,10 +163,10 @@ public class ChatLeaveCommand implements CommandExecutor, TabCompleter {
         } else {
             // usage
             HashMap<String, String> chxPlaceHolder = new HashMap<>();
-            chxPlaceHolder.put("<%cmd%>", label);
+            chxPlaceHolder.put("%cmd%", label);
             plugin.message().sender(
                     "chx_usage",
-                    "&lUsage:&r /<%cmd%> &b<channel>",
+                    "&lUsage:&r /%cmd% &b<channel>",
                     sender,
                     true,
                     chxPlaceHolder

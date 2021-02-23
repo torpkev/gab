@@ -37,7 +37,7 @@ public class PlayerFunctions {
         if (currentlyInResult.isSuccess()) {
             for (String currentlyIn : currentlyInResult.getStringList()) {
                 if (!currentlyIn.equalsIgnoreCase("global")) {
-                    plugin.data().putPlayerInChannel(uuid, currentlyIn);
+                    plugin.data.putPlayerInChannel(uuid, currentlyIn);
                     //plugin.log().quick("putting player in " + currentlyIn);
                 }
             }
@@ -50,10 +50,10 @@ public class PlayerFunctions {
                 false
         );
         if (currentlyChattingInResult.isSuccess()) {
-            plugin.data().setCurrentChannel(uuid, currentlyChattingInResult.getString());
+            plugin.data.setCurrentChannel(uuid, currentlyChattingInResult.getString());
             plugin.log().quick("player currently chatting in " + currentlyChattingInResult.getString());
             HashMap<String, String> placeHolder = new HashMap<>();
-            Channel currentChannel = plugin.data().getChannel(currentlyChattingInResult.getString());
+            Channel currentChannel = plugin.data.getChannel(currentlyChattingInResult.getString());
             if (currentChannel == null) {
                 currentChannel = new Channel();
             }
@@ -75,7 +75,7 @@ public class PlayerFunctions {
         );
         if (notificationsMutedResult.isSuccess()) {
             if (notificationsMutedResult.getBoolean()) {
-                plugin.data().mutePlayerNotifications(uuid);
+                plugin.data.mutePlayerNotifications(uuid);
                 //plugin.log().quick("muting player notifications");
             }
         }
@@ -88,7 +88,7 @@ public class PlayerFunctions {
         );
         if (globalMuteResult.isSuccess()) {
             if (globalMuteResult.getBoolean()) {
-                plugin.data().putGlobalMute(uuid);
+                plugin.data.putGlobalMute(uuid);
                 //plugin.log().quick("globally muting player");
             }
         }
@@ -101,7 +101,7 @@ public class PlayerFunctions {
         );
         if (channelMuteResult.isSuccess()) {
             for (String channelMuteChannel : channelMuteResult.getStringList()) {
-                plugin.data().putChannelMute(uuid, channelMuteChannel);
+                plugin.data.putChannelMute(uuid, channelMuteChannel);
                 //plugin.log().quick("channel muting player player in " + channelMuteChannel);
             }
         }
@@ -114,7 +114,7 @@ public class PlayerFunctions {
         // Currently In
         List<String> currentlyIn = new ArrayList<>();
         currentlyIn.add("global");
-        for (String channel : Gab.instance.data().currentlyInChannels(uuid)) {
+        for (String channel : Gab.instance.data.currentlyInChannels(uuid)) {
             if (!channel.equalsIgnoreCase("global")) {
                 currentlyIn.add(channel);
             }
@@ -122,23 +122,23 @@ public class PlayerFunctions {
         fileConfig.set("currently_in", currentlyIn);
 
         // Currently Chatting In
-        Channel channel = Gab.instance.data().currentChatChannel(uuid);
+        Channel channel = Gab.instance.data.currentChatChannel(uuid);
         if (channel == null) {
            channel = new Channel();
         }
         fileConfig.set("currently_chatting_in", channel.getKey());
 
         // Notifications Muted List
-        boolean notificationsMuted = Gab.instance.data().playerNotificationsMuted(uuid);
+        boolean notificationsMuted = Gab.instance.data.playerNotificationsMuted(uuid);
         fileConfig.set("notifications_muted", notificationsMuted);
 
         // Globally Muted
-        boolean globallyMuted = Gab.instance.data().isGlobalMuted(uuid);
+        boolean globallyMuted = Gab.instance.data.isGlobalMuted(uuid);
         fileConfig.set("global_mute", globallyMuted);
 
         // Channel Muted
         List<String> channelMuted = new ArrayList<>();
-        for (String mutedChannel : Gab.instance.data().channelMuteChannels(uuid)) {
+        for (String mutedChannel : Gab.instance.data.channelMuteChannels(uuid)) {
             channelMuted.add(mutedChannel);
         }
         fileConfig.set("channel_mute", channelMuted);

@@ -21,7 +21,7 @@ public class ChatMeCommand implements CommandExecutor {
         Gab plugin = Gab.instance;
 
         // Check if the plugin is disabled
-        if (!plugin.data().isEnabled()) {
+        if (!plugin.data.enabled) {
             plugin.message().sender(
                     "gab_disabled",
                     "&cGab is disabled",
@@ -55,10 +55,10 @@ public class ChatMeCommand implements CommandExecutor {
             if (arguments.get(0).equalsIgnoreCase("?")) {
                 // usage
                 HashMap<String, String> chxPlaceHolder = new HashMap<>();
-                chxPlaceHolder.put("<%cmd%>", label);
+                chxPlaceHolder.put("%cmd%", label);
                 plugin.message().sender(
                         "chme_usage",
-                        "&lUsage:&r /<%cmd%> &b<action>",
+                        "&lUsage:&r /%cmd% &b<action>",
                         sender,
                         true,
                         chxPlaceHolder
