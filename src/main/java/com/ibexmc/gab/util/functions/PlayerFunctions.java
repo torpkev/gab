@@ -83,4 +83,24 @@ public class PlayerFunctions {
         }
         return null;
     }
+
+    /**
+     * Gets a list of nearby players from the location of the player provided
+     * Does not include the player being provided
+     * @param center Location to use as the center
+     * @param distance Radius to lookup
+     * @return List of players, if none, returns a blank location
+     */
+    public static List<Player> nearbyPlayers(Player center, int distance) {
+        List<Player> players = new ArrayList<>();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!player.getUniqueId().equals(center.getUniqueId())) {
+                if (player.getLocation().distanceSquared(center.getLocation()) <= distance * distance) {
+                    players.add(player);
+                }
+            }
+        }
+        return players;
+    }
+
 }
