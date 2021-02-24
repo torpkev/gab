@@ -1,5 +1,76 @@
-Default channel key is "global"
-All players need gab.channel.global permission in order to see chat
+channels are just perms
 
-TODO: discord sending for non-global not working
+gab.admin - can add channel
 
+gab.channel.<channel>
+for each perm inside gab.channel >
+    if file exists - load in, otherwise use defaults
+    if defaults changed, save file
+        - prefix
+        - name
+        - sendToDiscord
+        - defaultColor
+        - notifyOnName
+
+gab.admin
+    - can add/remove gab.channel.<channel> to players for any channel (new or existing)
+    - can add/remove gab.channel.<channel>.admin to players
+    - can add/remove gab.mute to players
+    - can add/remove gab.channel.<channel>.mute to players
+    - can change defaults
+    - can run chatspy
+    - can announce from server
+
+gab.spy
+    - can run chatspy
+
+gab.say
+    - can announce from server
+
+gab.channel.<channel>.admin
+    - can add/remove gab.channel.<channel> to players for current channel
+    - can add/remove gab.channel.<channel>.mute to players
+    - can change defaults
+
+gab.mute
+    - mutes a player in all channels (unless gab.admin)
+gab.channel.<channel>.mute
+    - mutes a play in specified channel (unless gab.admin)
+
+/gab
+    > /gab debug                        - Turns debug on/off
+    > /gab reload                       - Reloads config
+    > /gab version                      - Returns version
+    > /gab mute <player>                - Globally mutes a player
+    > /gab unmute <player>              - Globally unmutes a player
+
+/ch - Channel Join
+    > /ch                               - Returns the player to global (toggles private chat off)
+    > /ch <channel>                     - Moves to the channel if perms exist (toggles private chat off)
+
+/chlist - Channel List
+    > /chlist                           - Lists all channels player has perms for
+
+/chme - Me Action
+    > /chme <action>                    - Displays player action
+
+/chspy - Chat Spy
+    > /chspy                            - Toggles chatspy on/off
+
+/chsay - Server Messaging
+    > /chsay <message>                  - Server message
+
+/chl - Local chat (chat only appears to those within certain radius)
+    > /chl                              - Toggles local chat (toggles private chat off)
+
+/ch2p - Private chat (player to player - if one player leaves, private chat is toggled off - toggles local chat off)
+    > /ch2p <player>                    - Toggles private chat on with specified player
+    > /ch2p                             - Toggles private chat off
+
+/chm - Manages the current channel
+    > /chm set <prefix|name|discord|color|notify> <value>
+    > /chm invite <player>
+    > /chm kick <player> - removes perm
+    > /chm mute <player>
+    > /chm unmute <player>
+    > /chm delete - Deletes current channel, removes file, removes all perms (gab.admin only)

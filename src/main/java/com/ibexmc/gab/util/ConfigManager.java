@@ -11,6 +11,7 @@ public class ConfigManager {
     YmlParser ymlParser;
 
 
+
     public ConfigManager(Gab plugin) {
         this.plugin = plugin;
         File configFile = FileFunctions.getConfigYml();

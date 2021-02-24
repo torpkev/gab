@@ -1,5 +1,7 @@
 debug: true
-default_prefix: "&3[&f%clan%&3]&r%group%"
-discord: true
-censor_character: "*"
-banned_words: []
+
+default_prefix: "[%key%]"
+default_color: "&f"
+default_notify: false
+
+save_to_file: false

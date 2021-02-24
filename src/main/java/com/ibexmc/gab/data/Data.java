@@ -17,14 +17,10 @@ public class Data {
 
     public String meColor = "&3";
 
-    /**
-     * Globally muted player
-     */
-    public Set<UUID> globalMuted = new HashSet<>();
+    public Map<String, Channel> channels = new HashMap<>();
 
-    /**
-     * key = player muting
-     * value = player being muted
-     */
-    public Map<UUID, UUID> muted = new HashMap<>();
+    public String configDefaultPrefix = "[%key%]";
+    public String configDefaultColor = "&f";
+    public boolean configSaveToFile = false;
+    public boolean configDefaultNotify = false;
 }

@@ -1,7 +1,8 @@
 package com.ibexmc.gab.hooks.discordsrv;
 
 import com.ibexmc.gab.Gab;
-import com.ibexmc.gab.util.log.Error;
+import com.ibexmc.gab.util.DebugType;
+import com.ibexmc.gab.util.Severity;
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
 import org.bukkit.plugin.Plugin;
@@ -22,11 +23,12 @@ public class DiscordSRVHook {
                 return;
             }
             if (!DiscordSRV.isReady) {
-                Gab.instance.debug().log(
+                Gab.instance.log.debug(
+                        DebugType.INFO,
                         "DiscordSRVHook",
-                        "messasge(String)",
+                        "message(String)",
                         "DiscordSRV returning not ready",
-                        "DiscordSRV.isReady == " + DiscordSRV.isReady
+                        "DiscordSRV.isReady == false"
                 );
                 return;
             }
@@ -39,30 +41,30 @@ public class DiscordSRVHook {
                         textChannel.sendMessage(message).queue();
                         String a = "B";
                     } else {
-                        Gab.instance.log().quick("Can't talk");
+                        Gab.instance.log.quick("Can't talk");
                     }
                 } catch (Exception ex) {
-                    Gab.instance.log().quick(ex.getMessage());
+                    Gab.instance.log.quick(ex.getMessage());
                 }
             } else {
-                Gab.instance.error().save(
+                Gab.instance.log.error(
                         "001",
                         "DiscordSRVHook",
                         "message(String)",
                         "No main text channel found",
                         "textChannel returned null",
-                        Error.Severity.URGENT,
+                        Severity.URGENT,
                         null
                 );
             }
         } catch (Exception ex) {
-            Gab.instance.error().save(
+            Gab.instance.log.error(
                     "002",
                     "DiscordSRVHook",
                     "message(String)",
                     "Unexpected Error",
                     ex.getMessage(),
-                    Error.Severity.URGENT,
+                    Severity.URGENT,
                     ex.getStackTrace()
             );
 

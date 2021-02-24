@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Map;
 
-public class GabCommand implements CommandExecutor, TabCompleter {
+public class ChannelCommand implements CommandExecutor, TabCompleter {
 
     /**
      * onTabComplete Returns a list of tab completions for online players
@@ -23,7 +23,7 @@ public class GabCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete (@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
         Map<Integer, String> arguments = StringFunctions.getArguments(args);
-        return TabCompletions.gab(sender, arguments);
+        return TabCompletions.channel(sender, arguments);
     }
 
     /**
@@ -37,29 +37,7 @@ public class GabCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         Map<Integer, String> arguments = StringFunctions.getArguments(args);
-        if (arguments.containsKey(0)) {
-            switch (arguments.get(0)) {
-                case "debug":
-                    CommandActions.gabDebug(sender, arguments,label);
-                    break;
-                case "reload":
-                    CommandActions.reload(sender, arguments, label);
-                    break;
-                case "version":
-                    CommandActions.version(sender, arguments, label);
-                    break;
-                case "mute":
-                    CommandActions.globalMute(sender, arguments, label);
-                    break;
-                case "unmute":
-                    CommandActions.globalUnmute(sender, arguments, label);
-                    break;
-                default:
-                    break;
-            }
-        }
+        CommandActions.channel(sender, arguments, label);
         return true;
     }
-
-
 }
