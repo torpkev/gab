@@ -4,4 +4,7 @@ default_prefix: "[%key%]"
 default_color: "&f"
 default_notify: false
 
+me_color: "&3"
+say_color: "&5"
+
 save_to_file: false

@@ -15,12 +15,12 @@ public class Data {
      */
     public Map<String, String> locale = new HashMap<>();
 
-    public String meColor = "&3";
-
     public Map<String, Channel> channels = new HashMap<>();
 
     public String configDefaultPrefix = "[%key%]";
     public String configDefaultColor = "&f";
+    public String configMeColor = "&3";
+    public String configSayColor = "&5";
     public boolean configSaveToFile = false;
     public boolean configDefaultNotify = false;
 }

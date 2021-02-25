@@ -63,9 +63,13 @@ gab.channel.<channel>.mute
 /chl - Local chat (chat only appears to those within certain radius)
     > /chl                              - Toggles local chat (toggles private chat off)
 
-/ch2p - Private chat (player to player - if one player leaves, private chat is toggled off - toggles local chat off)
+/ch2p - Private chat
+    > /ch2p <player> <message>          - Sends a private message to the player
     > /ch2p <player>                    - Toggles private chat on with specified player
     > /ch2p                             - Toggles private chat off
+
+/chr - Reply to the last private message you received
+    > /chr <message>                    - Sends a private message back to the last person who private messaged you (since logging on)
 
 /chm - Manages the current channel
     > /chm set <prefix|name|discord|color|notify> <value>

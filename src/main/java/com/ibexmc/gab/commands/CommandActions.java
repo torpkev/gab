@@ -693,7 +693,7 @@ public class CommandActions {
                 int i = 0;
                 for (Map.Entry<Integer, String> argEntry : arguments.entrySet()) {
                     if (i == 0) {
-                        action = Gab.instance.data.meColor + senderPlayer.getDisplayName() + " ";
+                        action = Gab.instance.data.configMeColor + senderPlayer.getDisplayName() + " ";
                     }
                     if (i > 0) {
                         action = action + " ";
@@ -717,6 +717,41 @@ public class CommandActions {
     }
 
     /**
+     * Sends a /say action
+     * @param sender CommandSender sending the command
+     * @param arguments Arguments sent to the command
+     * @param commandAlias Command alias used
+     */
+    public static void say(CommandSender sender, Map<Integer, String> arguments, String commandAlias) {
+        boolean canSay = false;
+        if (sender instanceof Player) {
+            Player senderPlayer = (Player) sender;
+            //TODO: Perm check for gab.say
+        } else {
+            canSay = true; // Console can always say
+        }
+        String message = "";
+        if (arguments.size() > 0) {
+            int i = 0;
+            for (Map.Entry<Integer, String> argEntry : arguments.entrySet()) {
+                if (i == 0) {
+                    message = Gab.instance.data.configSayColor;
+                }
+                if (i > 0) {
+                    message = message + " ";
+                }
+                message = message + argEntry.getValue();
+                i++;
+            }
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                Send.player(message, player, false);
+            }
+        } else {
+            //TODO: Usage
+        }
+    }
+
+    /**
      * Sends the /channel action which changes the current chat channel
      * @param sender CommandSender sending the command
      * @param arguments Arguments sent to the command
@@ -724,5 +759,25 @@ public class CommandActions {
      */
     public static void channel(CommandSender sender, Map<Integer, String> arguments, String commandAlias) {
         //TODO: /ch
+    }
+
+    /**
+     * Sends the /chlist action which lists all channels player has access to
+     * @param sender CommandSender sending the command
+     * @param arguments Arguments sent to the command
+     * @param commandAlias Command alias used
+     */
+    public static void list(CommandSender sender, Map<Integer, String> arguments, String commandAlias) {
+        //TODO: /chlist
+    }
+
+    /**
+     * Sends the /chspy action which toggles chatspy mode on/off
+     * @param sender CommandSender sending the command
+     * @param arguments Arguments sent to the command
+     * @param commandAlias Command alias used
+     */
+    public static void spy(CommandSender sender, Map<Integer, String> arguments, String commandAlias) {
+        //TODO: /chspy
     }
 }
